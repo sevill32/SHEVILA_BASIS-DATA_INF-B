@@ -1,0 +1,128 @@
+1. 
+* Buatlah table Employee dengan atribut berikut menggunakan perintah CREATE
+CREATE TABLE Employee (
+    id_emp VARCHAR(5),
+    name_emp VARCHAR(50),
+    age int
+);
+
+* Tampilkan tabel yang telah dibuat dengan perintah SELECT
+SELECT * FROM Employee;
+
+* Tambahkan data dengan perintah INSERT jalankan 2x 
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('123', 'Budi', 21);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('234', 'Dani', 23);
+
+2. 
+* Tampilkan data yang telah di-INSERT dengan perintah SELECT maka data yang muncul adalah sebagai berikut
+SELECT * FROM Employee;
+
+Data yang muncul
+id_emp | name_emp | age
+-------|----------|-----
+123    | Budi     | 21
+234    | Dani     | 23
+
+* Maka ubah data baris kedua menjadi sbb, gunakan perintah update untuk baris data kedua
+UPDATE Employee SET name_emp = 'Arief', age = 24 WHERE id_emp = '123';
+
+3. 
+* Buat id_emp pada table Employee menjadi Primary Key dg perintah ALTER TABLE
+ALTER TABLE Employee ADD PRIMARY KEY (id_emp);
+
+* Tampilkan struktur table Employee 
+DESCRIBE Employee;
+
+* Menambahkan data baru
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('123', 'Arief', 24);
+
+4. Penggunaan WHERE condition
+Hapus data dengan id_emp = 123 
+Hapus data yang bernama “Intan”
+Hapus data dengan age 21 
+DELETE FROM Employee WHERE id_emp = '123';
+DELETE FROM Employee WHERE name_emp = 'Intan';
+DELETE FROM Employee WHERE age = 21;
+
+5. 
+* Tampilkan data hasil penambahan
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('211', 'Mulya', 21);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('212', 'Dewi', 22);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('213', 'Ayu', 23);
+
+* Jalankan perintah SQL utk menghapus semua data
+DELETE FROM Employee;
+
+* Batalkan penghapusan data 
+ROLLBACK;
+
+6. 
+* Tambahkan kembali semua data
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('123', 'Budi B', 21);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('234', 'Dani', 23);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('134', 'Budi A', 24);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('144', 'Intan', 20);
+INSERT INTO Employee (id_emp, name_emp, age) VALUES ('155', 'Budi W', 25);
+
+* Tampilkan data dengan nama Budi dan usia diatas 21 tahun
+SELECT * FROM Employee WHERE name_emp LIKE 'Budi%' AND age > 21;
+
+* Tampilkan data dengan usia antara 22-24 tahun 
+SELECT * FROM Employee WHERE age BETWEEN 22 AND 24;
+
+* Tambahkan kolom “gol” varchar (5) pada table Employee
+ALTER TABLE Employee ADD gol VARCHAR(5);
+
+* Lalu isi kolom gol sehingga menjadi sebagai berikut 
+UPDATE Employee SET gol = 'I' WHERE id_emp = '123';
+UPDATE Employee SET gol = 'II' WHERE id_emp = '234';
+UPDATE Employee SET gol = 'III' WHERE id_emp = '134';
+UPDATE Employee SET gol = 'II' WHERE id_emp = '144';
+UPDATE Employee SET gol = 'I' WHERE id_emp = '155';
+
+7. Praktikkan penggunaan BETWEEN, IN, LIKE, dan AND:
+SELECT * FROM Employee WHERE age BETWEEN 21 AND 24;
+SELECT * FROM Employee WHERE gol IN ('I', 'II');
+SELECT * FROM Employee WHERE name_emp LIKE 'Budi%';
+SELECT * FROM Employee WHERE age > 21 AND gol = 'I';
+
+8. Menggunakan SELECT untuk menambahkan beberapa baris data dari table lain
+INSERT INTO Employee (id_emp, name_emp, age)
+SELECT id_emp, name_emp, age FROM AnotherTable WHERE condition;
+
+9. 
+* Menambahkan data hanya ke kolom tertentu:
+INSERT INTO Employee (id_emp, name_emp) VALUES ('321', 'Sinta');
+
+* Membatalkan INSERT INTO menggunakan ROLLBACK:
+ROLLBACK;
+
+10. 
+* Buat tabel Golongan:
+CREATE TABLE Golongan (
+    gol VARCHAR(5),
+    gol_name VARCHAR(50)
+);
+
+* Isi data dalam tabel Golongan:
+INSERT INTO Golongan (gol, gol_name) VALUES ('I', 'Golongan I');
+INSERT INTO Golongan (gol, gol_name) VALUES ('II', 'Golongan II');
+INSERT INTO Golongan (gol, gol_name) VALUES ('III', 'Golongan III');
+
+* Buat Foreign Key dari Employee ke Golongan:
+ALTER TABLE Employee ADD CONSTRAINT fk_gol FOREIGN KEY (gol) REFERENCES Golongan(gol);
+
+11. Tampilkan Nama Golongan untuk masing-masing employee 
+SELECT e.id_emp, e.name_emp, e.age, g.gol_name
+FROM Employee e
+JOIN Golongan g ON e.gol = g.gol;
+
+Hasil:
+id_emp | name_emp | age | gol_name
+-------|----------|-----|----------
+123    | Budi B   | 21  | Golongan I
+234    | Dani     | 23  | Golongan II
+134    | Budi A   | 24  | Golongan III
+144    | Intan    | 20  | Golongan II
+155    | Budi W   | 25  | Golongan I
+
