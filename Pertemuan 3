@@ -1,0 +1,44 @@
+1. Melihat semua produk yang ada:
+SELECT * FROM Product;
+
+2. Memilih produk yang harganya lebih dari 20:
+SELECT * FROM Product WHERE Price > 20;
+
+3. Menampilkan nama pelanggan dan kotanya:
+SELECT CustomerName, City FROM Customer;
+
+4. Menampilkan nama produk dan harga produk dengan harga di bawah 15:
+Jika kamu ingin melihat produk-produk yang harganya di bawah 15, kamu bisa menggunakan perintah seperti ini:
+SELECT ProductName, Price FROM Product WHERE Price < 15;
+
+5. Menampilkan pelanggan dari negara tertentu (misalnya 'Germany'):
+Kalau kamu ingin melihat pelanggan yang berasal dari Jerman, kamu bisa menggunakan perintah:
+SELECT CustomerName, Country FROM Customer WHERE Country = 'Germany';
+
+6. Mengurutkan produk berdasarkan harga, dari yang paling mahal ke yang paling murah:
+Untuk mengurutkan data berdasarkan harga secara menurun (termahal dulu), kita bisa menggunakan ORDER BY:
+SELECT ProductName, Price FROM Product ORDER BY Price DESC;
+
+7. Menghitung jumlah pelanggan dari setiap negara:
+Untuk mengetahui berapa banyak pelanggan dari masing-masing negara, kamu bisa menggunakan perintah GROUP BY:
+SELECT Country, COUNT(*) FROM Customer GROUP BY Country;
+
+8. Menampilkan nama pelanggan yang tinggal di kota tertentu (misalnya 'London'):
+Jika kamu ingin melihat siapa saja pelanggan yang tinggal di kota London, kamu bisa menggunakan perintah berikut:
+SELECT CustomerName, City FROM Customer WHERE City = 'London';
+
+9. Menampilkan produk berdasarkan kategori tertentu (misalnya CategoryID = 1):
+Untuk melihat produk yang termasuk dalam kategori tertentu, kamu bisa menggunakan perintah ini:
+SELECT ProductName, CategoryID FROM Product WHERE CategoryID = 1;
+
+10. Menghitung total jumlah produk yang ada di tabel:
+Kalau kamu ingin tahu berapa jumlah total produk yang ada, kamu bisa menggunakan perintah COUNT:
+SELECT COUNT(*) FROM Product;
+
+11. Mengurutkan pelanggan berdasarkan nama, dari yang awalnya 'A' hingga 'Z':
+Untuk mengurutkan pelanggan berdasarkan nama secara alfabetis, kamu bisa menggunakan perintah ORDER BY:
+SELECT CustomerName FROM Customer ORDER BY CustomerName ASC;
+
+12. Menampilkan nama produk yang harganya antara 10 dan 30:
+Jika kamu ingin melihat produk yang harganya ada di antara 10 dan 30, gunakan perintah BETWEEN:
+SELECT ProductName, Price FROM Product WHERE Price BETWEEN 10 AND 30;
